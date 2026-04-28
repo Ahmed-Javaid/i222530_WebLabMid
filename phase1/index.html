@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Disaster Relief Task Coordination Portal — coordinate volunteer-driven relief operations during emergencies." />
+  <title>Disaster Relief Coordination Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header id="app-header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">🚨</span>
+        <h1>DisasterReliefHQ</h1>
+      </div>
+    </div>
+    <nav class="header-tabs" id="main-nav">
+      <button class="tab-btn active" data-tab="dashboard">
+        <span class="tab-icon">📊</span> Dashboard
+      </button>
+      <button class="tab-btn" data-tab="tasks">
+        <span class="tab-icon">📋</span> Tasks
+      </button>
+      <button class="tab-btn" data-tab="volunteers">
+        <span class="tab-icon">🙋</span> Volunteers
+      </button>
+    </nav>
+    <div class="header-right">
+      <div class="coordinator-badge" id="coordinator-badge">
+        <span class="avatar">JA</span>
+        <span class="coord-name">Coordinator: <strong>Jawad Ahmed</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="main-content">
+
+    <!-- ===== DASHBOARD TAB ===== -->
+    <section class="tab-panel active" id="panel-dashboard">
+
+      <!-- Stats Row -->
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card stat-active">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-active-tasks">0</span>
+            <span class="stat-label">Active Tasks</span>
+          </div>
+        </div>
+        <div class="stat-card stat-critical">
+          <div class="stat-icon">🔴</div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-critical-tasks">0</span>
+            <span class="stat-label">Critical Tasks</span>
+          </div>
+        </div>
+        <div class="stat-card stat-volunteers">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-volunteers">0</span>
+            <span class="stat-label">Registered Volunteers</span>
+          </div>
+        </div>
+        <div class="stat-card stat-completed">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <span class="stat-value" id="stat-completed-today">0</span>
+            <span class="stat-label">Completed Today</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-column layout: Tasks + Volunteers -->
+      <div class="dashboard-grid">
+
+        <!-- Left: Tasks Segment -->
+        <div class="tasks-segment">
+          <div class="segment-header">
+            <h2>Tasks</h2>
+          </div>
+
+          <!-- Filter bar -->
+          <div class="filter-bar" id="filter-bar">
+            <div class="filter-pills">
+              <button class="pill active" data-filter="all">All</button>
+              <button class="pill pill-critical" data-filter="critical">Critical</button>
+              <button class="pill pill-high" data-filter="high">High</button>
+              <button class="pill pill-medium" data-filter="medium">Medium</button>
+            </div>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="search-tasks" placeholder="Search tasks by name…" />
+            </div>
+          </div>
+
+          <!-- Task Cards List -->
+          <div class="task-list" id="task-list">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Add Task Button -->
+          <button class="btn-add-task" id="btn-open-task-modal">
+            <span>＋</span> Add Task
+          </button>
+        </div>
+
+        <!-- Right: Volunteers Sidebar -->
+        <div class="volunteers-sidebar">
+          <div class="segment-header">
+            <h2>Available Volunteers</h2>
+          </div>
+          <div class="volunteer-list" id="volunteer-list">
+            <!-- Rendered by JS -->
+          </div>
+          <button class="btn-register-volunteer" id="btn-open-volunteer-modal">
+            <span>＋</span> Register Volunteer
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== TASKS TAB ===== -->
+    <section class="tab-panel" id="panel-tasks">
+      <div class="tasks-segment full-width">
+        <div class="segment-header">
+          <h2>All Tasks</h2>
+        </div>
+        <div class="filter-bar" id="filter-bar-tasks">
+          <div class="filter-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill pill-critical" data-filter="critical">Critical</button>
+            <button class="pill pill-high" data-filter="high">High</button>
+            <button class="pill pill-medium" data-filter="medium">Medium</button>
+          </div>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-tasks-tab" placeholder="Search tasks by name…" />
+          </div>
+        </div>
+        <div class="task-list" id="task-list-tab">
+          <!-- Rendered by JS -->
+        </div>
+        <button class="btn-add-task" id="btn-open-task-modal-tab">
+          <span>＋</span> Add Task
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== VOLUNTEERS TAB ===== -->
+    <section class="tab-panel" id="panel-volunteers">
+      <div class="volunteers-segment-full">
+        <div class="segment-header">
+          <h2>All Volunteers</h2>
+        </div>
+        <div class="volunteer-grid" id="volunteer-grid-tab">
+          <!-- Rendered by JS -->
+        </div>
+        <button class="btn-register-volunteer" id="btn-open-volunteer-modal-tab">
+          <span>＋</span> Register Volunteer
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== CREATE TASK MODAL ========== -->
+  <div class="modal-overlay" id="task-modal-overlay">
+    <div class="modal" id="task-modal">
+      <button class="modal-close" id="task-modal-close">&times;</button>
+      <h2 class="modal-title">Create New Task</h2>
+      <form id="task-form" novalidate>
+        <div class="form-group">
+          <label for="task-title">Task Title</label>
+          <input type="text" id="task-title" placeholder="Enter task title…" />
+          <span class="field-error" id="title-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="task-priority">Priority</label>
+          <select id="task-priority">
+            <option value="critical">🔴 Critical</option>
+            <option value="high">🟠 High</option>
+            <option value="medium" selected>🟢 Medium</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="task-min-volunteers">Minimum Volunteers</label>
+          <input type="number" id="task-min-volunteers" value="1" min="1" />
+        </div>
+        <div class="form-group">
+          <label for="task-description">
+            Description
+            <span class="char-counter" id="desc-counter">200 / 200</span>
+          </label>
+          <textarea id="task-description" rows="4" placeholder="Describe the task…" maxlength="250"></textarea>
+          <span class="field-error" id="desc-error"></span>
+        </div>
+        <div class="form-group">
+          <label>Required Skills</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label"><input type="checkbox" value="First Aid" /> First Aid</label>
+            <label class="checkbox-label"><input type="checkbox" value="Medical" /> Medical</label>
+            <label class="checkbox-label"><input type="checkbox" value="Logistics" /> Logistics</label>
+            <label class="checkbox-label"><input type="checkbox" value="Engineering" /> Engineering</label>
+            <label class="checkbox-label"><input type="checkbox" value="Search and Rescue" /> Search &amp; Rescue</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="btn-create-task">Create Task</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== REGISTER VOLUNTEER MODAL ========== -->
+  <div class="modal-overlay" id="volunteer-modal-overlay">
+    <div class="modal" id="volunteer-modal">
+      <button class="modal-close" id="volunteer-modal-close">&times;</button>
+      <h2 class="modal-title">Register Volunteer</h2>
+      <form id="volunteer-form" novalidate>
+        <div class="form-group">
+          <label for="vol-name">Full Name</label>
+          <input type="text" id="vol-name" placeholder="Enter full name…" />
+          <span class="field-error" id="vol-name-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="vol-email">Email</label>
+          <input type="email" id="vol-email" placeholder="Enter email address…" />
+          <span class="field-error" id="vol-email-error"></span>
+        </div>
+        <div class="form-group">
+          <label>Skills</label>
+          <div class="checkbox-group" id="vol-skills-group">
+            <label class="checkbox-label"><input type="checkbox" value="First Aid" /> First Aid</label>
+            <label class="checkbox-label"><input type="checkbox" value="Medical" /> Medical</label>
+            <label class="checkbox-label"><input type="checkbox" value="Logistics" /> Logistics</label>
+            <label class="checkbox-label"><input type="checkbox" value="Engineering" /> Engineering</label>
+            <label class="checkbox-label"><input type="checkbox" value="Search and Rescue" /> Search &amp; Rescue</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="btn-register-volunteer">Register Volunteer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
